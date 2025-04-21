@@ -1,11 +1,11 @@
 package web.config;
 
-
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 @Configuration
-@EnableTransactionManagement
-@ComponentScan(basePackages = "web.config")
-@PropertySource("classpath:db.properties")
+@ComponentScan("web")
+@Import(DBConfig.class)
 public class AppConfig {
-
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+
+<h2>Список пользователей</h2>
+
+<a th:href="@{/users/new}">Добавить пользователя</a>
+<br><br>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Email</th>
+    <th>Действия</th>
+  </tr>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}">1</td>
+    <td th:text="${user.firstName}">Иван</td>
+    <td th:text="${user.lastName}">Иванов</td>
+    <td th:text="${user.email}">ivan@example.com</td>
+    <td>
+      <a th:href="@{/users/edit(id=${user.id})}">Редактировать</a>
+      <a th:href="@{/users/delete(id=${user.id})}">Удалить</a>
+    </td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 th:text="${user.id != null} ? 'Редактировать пользователя' : 'Добавить пользователя'"></h2>
+
+<form th:action="@{/users/save}" th:object="${user}" method="post">
+  <input type="hidden" th:field="*{id}" />
+  <label>Имя:</label> <input type="text" th:field="*{firstName}" /><br>
+  <label>Фамилия:</label> <input type="text" th:field="*{lastName}" /><br>
+  <label>Email:</label> <input type="email" th:field="*{email}" /><br><br>
+  <button type="submit">Сохранить</button>
+</form>
+
+</body>
+</html>

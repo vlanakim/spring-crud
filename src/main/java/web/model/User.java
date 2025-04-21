@@ -1,11 +1,10 @@
 package web.model;
 
-import org.hibernate.annotations.Table;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -17,13 +16,14 @@ public class User {
     private String lastName;
     private String email;
 
+    public User() {}
+
     public User(Long id, String firstName, String lastName, String email) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
     }
-    public User() {}
 
     public Long getId() {
         return id;
