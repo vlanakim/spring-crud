@@ -37,9 +37,26 @@
 
 <form th:action="@{/users/save}" th:object="${user}" method="post">
   <input type="hidden" th:field="*{id}" />
-  <label>Имя:</label> <input type="text" th:field="*{firstName}" /><br>
-  <label>Фамилия:</label> <input type="text" th:field="*{lastName}" /><br>
-  <label>Email:</label> <input type="email" th:field="*{email}" /><br><br>
+
+  <div>
+    <label>Имя:</label>
+    <input type="text" th:field="*{firstName}" />
+    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+  </div>
+
+  <div>
+    <label>Фамилия:</label>
+    <input type="text" th:field="*{lastName}" />
+    <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+  </div>
+
+  <div>
+    <label>Email:</label>
+    <input type="email" th:field="*{email}" />
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+  </div>
+
+  <br>
   <button type="submit">Сохранить</button>
 </form>
 
